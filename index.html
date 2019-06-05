@@ -20,44 +20,50 @@
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: ''
         };       
         var container = document.getElementById('example');
-        var baseUrl = "http://handsontable.com/static/";
 
         var dataSport = [
-          [1,"Los Angeles Lakers","<img src='"+ baseUrl+ "images/logos/nba-teams/lakers.gif'>", "<div id='p1'></div>"],
-          [2,"New York Knicks","<img src='"+ baseUrl+ "images/logos/nba-teams/knicks.gif'>", "<div id='p2'></div>"],
-          [3,"Chicago Bulls","<img src='"+ baseUrl+ "images/logos/nba-teams/bulls.gif'>", "<div id='p3'></div>"],
-          [4,"Boston Celtics","<img src='"+ baseUrl+ "images/logos/nba-teams/celtic.gif'>", "<div id='p4'></div>"],
-          [5,"Los Angeles Clippers","<img src='"+ baseUrl+ "images/logos/nba-teams/clippers.gif'>", "<div id='p5'></div>"]
+          [1,"Agilance","<div id='p01'></div>", "<div id='p02'></div>", "<div id='p03'></div>" ],
+          [2,"FronDesk","<div id='p11'></div>", "<div id='p12'></div>", "<div id='p13'></div>" ],
+          [3,"DevsGarden","<div id='p21'></div>", "<div id='p22'></div>", "<div id='p23'></div>" ]
         ];
 
         var hotProp = {
           data: dataSport,
           licenseKey: 'non-commercial-and-evaluation',
-          colHeaders: ["Rank", "Team", "Logo", "chart"],
+          colHeaders: ["#", "Company", "Meetings", "Invitations", "Visitors"],
           rowHeaders: false,
           columnSorting: true,
           contextMenu: true,
           autoWrapRow: true,
           afterSelection: function(rowIndex, columnIndex) {  	
-            var chart1 = new google.visualization.PieChart(document.getElementById('p1'));
-            var chart2 = new google.visualization.PieChart(document.getElementById('p2'));
-            var chart3 = new google.visualization.PieChart(document.getElementById('p3'));
-            var chart4 = new google.visualization.PieChart(document.getElementById('p4'));
-            var chart5 = new google.visualization.PieChart(document.getElementById('p5'));
-            chart1.draw(data, options);
-            chart2.draw(data, options);
-            chart3.draw(data, options);
-            chart4.draw(data, options);
-            chart5.draw(data, options);
+            var chart01 = new google.visualization.PieChart(document.getElementById('p01'));
+            var chart02 = new google.visualization.PieChart(document.getElementById('p02'));
+            var chart03 = new google.visualization.PieChart(document.getElementById('p03'));
+            var chart11 = new google.visualization.PieChart(document.getElementById('p11'));
+            var chart12 = new google.visualization.PieChart(document.getElementById('p12'));
+            var chart13 = new google.visualization.PieChart(document.getElementById('p13'));
+            var chart21 = new google.visualization.PieChart(document.getElementById('p21'));
+            var chart22 = new google.visualization.PieChart(document.getElementById('p22'));
+            var chart23 = new google.visualization.PieChart(document.getElementById('p23'));
+            chart01.draw(data, options);
+            chart02.draw(data, options);
+            chart03.draw(data, options);
+            chart11.draw(data, options);
+            chart12.draw(data, options);
+            chart13.draw(data, options);
+            chart21.draw(data, options);
+            chart22.draw(data, options);
+            chart23.draw(data, options);
           },
           columns: [
             {data: 0, type: 'numeric'},
             {data: 1, type: 'text'},
-            {data: 2, renderer: 'html', width: 200},
-             {data: 3, renderer: 'html', width: 200}
+            {data: 2, renderer: 'html', width: 300},
+            {data: 3, renderer: 'html', width: 300},
+            {data: 4, renderer: 'html', width: 300}
           ],
           cells: function (row, col, prop) {
             var cellProperties = {};
