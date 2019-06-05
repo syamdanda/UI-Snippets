@@ -19,6 +19,26 @@
           ['Sleep',    7]
         ]);
 
+        var data1 = google.visualization.arrayToDataTable([
+          ['Meeting Type', 'Count'],
+          ['Employee Meetings',     11],
+          ['Adhoc Meetings',      2]
+        ]);
+
+        var data2 = google.visualization.arrayToDataTable([
+          ['Type', 'Count'],
+          ['Accepted',     19],
+          ['Declined',      2],
+          ['Reschedule',      5]
+        ]);
+
+        var data3 = google.visualization.arrayToDataTable([
+          ['Type', 'Count'],
+          ['New Visitors',     40],
+          ['Previous Visitors',      32],
+          ['Visitors from other Company',      6]
+        ]);
+
         var options = {
           title: ''
         };       
@@ -48,15 +68,15 @@
             var chart21 = new google.visualization.PieChart(document.getElementById('p21'));
             var chart22 = new google.visualization.PieChart(document.getElementById('p22'));
             var chart23 = new google.visualization.PieChart(document.getElementById('p23'));
-            chart01.draw(data, options);
-            chart02.draw(data, options);
-            chart03.draw(data, options);
+            chart01.draw(data1, options);
+            chart02.draw(data2, options);
+            chart03.draw(data3, options);
             chart11.draw(data, options);
             chart12.draw(data, options);
             chart13.draw(data, options);
-            chart21.draw(data, options);
-            chart22.draw(data, options);
-            chart23.draw(data, options);
+            chart21.draw(data1, options);
+            chart22.draw(data2, options);
+            chart23.draw(data3, options);
           },
           columns: [
             {data: 0, type: 'numeric'},
