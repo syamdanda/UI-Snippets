@@ -1,4 +1,3 @@
-
 <html>
   <head>
   <title>Grid With chart</title>
@@ -11,7 +10,6 @@
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
           ['Work',     11],
@@ -23,89 +21,78 @@
 
         var options = {
           title: 'My Daily Activities'
+        };       
+        var container = document.getElementById('example');
+        var baseUrl = "http://handsontable.com/static/";
+
+        var dataSport = [
+          [1,"Los Angeles Lakers","<img src='"+ baseUrl+ "images/logos/nba-teams/lakers.gif'>", "<div id='p1'></div>"],
+          [2,"New York Knicks","<img src='"+ baseUrl+ "images/logos/nba-teams/knicks.gif'>", "<div id='p2'></div>"],
+          [3,"Chicago Bulls","<img src='"+ baseUrl+ "images/logos/nba-teams/bulls.gif'>", "<div id='p3'></div>"],
+          [4,"Boston Celtics","<img src='"+ baseUrl+ "images/logos/nba-teams/celtic.gif'>", "<div id='p4'></div>"],
+          [5,"Los Angeles Clippers","<img src='"+ baseUrl+ "images/logos/nba-teams/clippers.gif'>", "<div id='p5'></div>"]
+        ];
+
+        var hotProp = {
+          data: dataSport,
+          licenseKey: 'non-commercial-and-evaluation',
+          colHeaders: ["Rank", "Team", "Logo", "chart"],
+          rowHeaders: false,
+          columnSorting: true,
+          contextMenu: true,
+          autoWrapRow: true,
+          afterSelection: function(rowIndex, columnIndex) {  	
+            var chart1 = new google.visualization.PieChart(document.getElementById('p1'));
+            var chart2 = new google.visualization.PieChart(document.getElementById('p2'));
+            var chart3 = new google.visualization.PieChart(document.getElementById('p3'));
+            var chart4 = new google.visualization.PieChart(document.getElementById('p4'));
+            var chart5 = new google.visualization.PieChart(document.getElementById('p5'));
+            chart1.draw(data, options);
+            chart2.draw(data, options);
+            chart3.draw(data, options);
+            chart4.draw(data, options);
+            chart5.draw(data, options);
+          },
+          columns: [
+            {data: 0, type: 'numeric'},
+            {data: 1, type: 'text'},
+            {data: 2, renderer: 'html', width: 200},
+             {data: 3, renderer: 'html', width: 200}
+          ],
+          cells: function (row, col, prop) {
+            var cellProperties = {};
+            cellProperties.className = 'htMiddle htCenter';
+            return cellProperties;
+          }
         };
 
-        
-
-        
-        
-        
-        var container = document.getElementById('example');
-var baseUrl = "http://handsontable.com/static/";
-
-var dataSport = [
-  [1,"Los Angeles Lakers","<img src='"+ baseUrl+ "images/logos/nba-teams/lakers.gif'>", "<div id='p1'></div>"],
-  [2,"New York Knicks","<img src='"+ baseUrl+ "images/logos/nba-teams/knicks.gif'>", "<div id='p2'></div>"],
-  [3,"Chicago Bulls","<img src='"+ baseUrl+ "images/logos/nba-teams/bulls.gif'>", "<div id='p3'></div>"],
-  [4,"Boston Celtics","<img src='"+ baseUrl+ "images/logos/nba-teams/celtic.gif'>", "<div id='p4'></div>"],
-  [5,"Los Angeles Clippers","<img src='"+ baseUrl+ "images/logos/nba-teams/clippers.gif'>", "<div id='p5'></div>"]
-];
-
-var hotProp = {
-  data: dataSport,
-  licenseKey: 'non-commercial-and-evaluation',
-  colHeaders: ["Rank", "Team", "Logo", "chart"],
-  rowHeaders: false,
-  columnSorting: true,
-  contextMenu: true,
-  autoWrapRow: true,
-  afterSelection: function(rowIndex, columnIndex) {
-  	
-var chart1 = new google.visualization.PieChart(document.getElementById('p1'));
-var chart2 = new google.visualization.PieChart(document.getElementById('p2'));
-var chart3 = new google.visualization.PieChart(document.getElementById('p3'));
-var chart4 = new google.visualization.PieChart(document.getElementById('p4'));
-var chart5 = new google.visualization.PieChart(document.getElementById('p5'));
-        chart1.draw(data, options);
-        chart2.draw(data, options);
-        chart3.draw(data, options);
-        chart4.draw(data, options);
-        chart5.draw(data, options);
-  },
-  columns: [
-    {data: 0, type: 'numeric'},
-    {data: 1, type: 'text'},
-    {data: 2, renderer: 'html', width: 200},
-     {data: 3, renderer: 'html', width: 200}
-  ],
-  cells: function (row, col, prop) {
-    var cellProperties = {};
-    cellProperties.className = 'htMiddle htCenter';
-    return cellProperties;
-  }
-};
-
-var hot = new Handsontable(container, hotProp);
-
-        
+        var hot = new Handsontable(container, hotProp);        
       }
     </script>
+    
     <style>
-    body {   
-  margin: 20px 30px;
-  font-size: 13px;
-  font-family: 'Open Sans', Helvetica, Arial;
-}
-
-a {
-  color: #34A9DC;
-  text-decoration: none;
-}
-
-p {
-  margin: 5px 0 20px;
-}
-
-h2 {
-  margin: 20px 0 0;
-  font-size: 18px;
-  font-weight: normal;
-}
-    
-    
+      body {   
+        margin: 20px 30px;
+        font-size: 13px;
+        font-family: 'Open Sans', Helvetica, Arial;
+      }
+      a {
+        color: #34A9DC;
+        text-decoration: none;
+      }
+      p {
+        margin: 5px 0 20px;
+      }
+      h2 {
+        margin: 20px 0 0;
+        font-size: 18px;
+        font-weight: normal;
+      }    
     </style>
   </head>
+  
   <body>
     <div id="example"></div>
   </body>
+
 </html>
