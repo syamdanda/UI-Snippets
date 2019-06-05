@@ -6,9 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
     <script src="https://www.google.com/jsapi?autoload={%27modules%27:[{%27name%27:%27visualization%27,%27version%27:%271%27,%27packages%27:[%27corechart%27]}]}"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
+      var hot;
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
@@ -92,8 +90,45 @@
           }
         };
 
-        var hot = new Handsontable(container, hotProp);        
+        hot = new Handsontable(container, hotProp);
+        //hot.selectCell(0, 2);        
+
+        var exportPlugin = hot.getPlugin('exportFile');
+
+        document.getElementById('show-file').addEventListener('click', function() {
+          hot.selectCell(0, 2);
+        }); 
+
+        document.getElementById('export-file').addEventListener('click', function() {
+          exportPlugin.downloadFile('csv', {filename: 'MyFile'});
+        }); 
+
+        document.getElementById('print-file').addEventListener('click', function() {
+          printData();
+        }); 
       }
+
+
+      function printData()
+      {
+         var divToPrint=document.getElementById("example");
+         newWin= window.open("");
+         newWin.document.write(divToPrint.outerHTML);
+         newWin.print();
+         newWin.close();
+      }
+
+        document.addEventListener('readystatechange', event => {
+            if (event.target.readyState === "complete") {
+                console.log("Now external resources are loaded too, like css,src etc... ");                
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+                if (hot) {
+                  hot.selectCell(0, 2);
+                }
+                
+            }
+        });
     </script>
     
     <style>
@@ -118,6 +153,9 @@
   </head>
   
   <body>
+    <button id="show-file" class="intext-btn">Display</button>
+    <button id="export-file" class="intext-btn">Download</button>
+    <button id="print-file" class="intext-btn">Print</button>
     <div id="example"></div>
   </body>
 
